@@ -1,0 +1,223 @@
+[gd_scene load_steps=19 format=3 uid="uid://dcoxsuhva8o68"]
+
+[ext_resource type="PackedScene" uid="uid://dvl4yg81q72j3" path="res://Main/SegmentBase/segmentBase.tscn" id="1_02j02"]
+[ext_resource type="Script" uid="uid://ct0dq106uwfbu" path="res://Main/Nodes/loading_node.gd" id="1_k1yge"]
+[ext_resource type="Texture2D" uid="uid://bgjmpyre7lca1" path="res://Assets/Particles/feather.png" id="2_akq4i"]
+[ext_resource type="PackedScene" uid="uid://lj3xkjglxx37" path="res://Main/SegmentBase/caveSegmentBase.tscn" id="2_k1yge"]
+[ext_resource type="Texture2D" uid="uid://d3uf28jqxrb5v" path="res://Theme/CGJ.png" id="2_wufw5"]
+[ext_resource type="PackedScene" uid="uid://bbd5ui81cwo7q" path="res://Main/PickUp/Pickup.tscn" id="3_2b2sx"]
+[ext_resource type="Texture2D" uid="uid://dk78vyoj88xrh" path="res://Assets/Particles/spark_pixel.png" id="3_aguo3"]
+[ext_resource type="Texture2D" uid="uid://c36tp8vpoj2y" path="res://Theme/Erikkson.png" id="3_rva32"]
+[ext_resource type="PackedScene" uid="uid://jq7rycsygamf" path="res://Assets/Bird/Guacharo.glb" id="4_kyffj"]
+[ext_resource type="PackedScene" uid="uid://bbeflljq5cmd0" path="res://Main/ObstacleBase/wallObstacle/wall_obstacle_base.tscn" id="6_k1yge"]
+[ext_resource type="PackedScene" uid="uid://kryjqpmwfinw" path="res://Main/SegmentBase/CaveTriggers/cave_trigger_open.tscn" id="7_kyffj"]
+[ext_resource type="PackedScene" uid="uid://c8bhpgvuctj0p" path="res://Main/SegmentBase/CaveTriggers/cave_trigger_exit.tscn" id="8_xfe01"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t34ig"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_akq4i")
+texture_filter = 0
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wufw5"]
+lightmap_size_hint = Vector2i(7, 6)
+material = SubResource("StandardMaterial3D_t34ig")
+size = Vector2(1, 0.8)
+orientation = 2
+
+[sub_resource type="Gradient" id="Gradient_rva32"]
+offsets = PackedFloat32Array(0, 0.770588, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w3p4g"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_aguo3")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vlvgo"]
+material = SubResource("StandardMaterial3D_w3p4g")
+size = Vector2(0.06, 0.8)
+orientation = 2
+
+[sub_resource type="Curve" id="Curve_ndd5h"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_k1yge")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.784314)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave] loading..."
+fit_content = true
+
+[node name="levelLoadLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_left = 20.0
+offset_top = 120.0
+offset_right = 270.0
+offset_bottom = 370.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_wufw5")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+offset_left = 157.0
+offset_top = 124.0
+offset_right = 251.0
+offset_bottom = 239.0
+texture = ExtResource("3_rva32")
+stretch_mode = 3
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.385, 5.82739)
+
+[node name="MainTrackLight" type="SpotLight3D" parent="Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.924659, 0.380796, 0, -0.380796, 0.924659, 0, -1.61431, 0.0657205)
+light_energy = 8.0
+spot_range = 13.4916
+spot_angle = 15.0489
+
+[node name="rythmSpotlight" type="SpotLight3D" parent="Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.971994, 0.235006, 0, -0.235006, 0.971994, 0, -1.61431, 0.0657205)
+light_energy = 0.0
+spot_range = 21.4029
+spot_angle = 13.1613
+
+[node name="softMainLight" type="SpotLight3D" parent="Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.469348, 0.883013, 0, -0.883013, 0.469348, 0, -0.8846, 0.992266)
+light_color = Color(0.156863, 0.360784, 0.768627, 1)
+light_energy = 2.0
+spot_range = 3.20133
+spot_angle = 30.9662
+
+[node name="deathFlash" type="OmniLight3D" parent="Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.46947, 0)
+light_energy = 0.0
+omni_range = 10.0
+
+[node name="featherExplosionVFX" type="CPUParticles3D" parent="Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.46483, 0)
+lifetime = 3.0
+explosiveness = 1.0
+mesh = SubResource("PlaneMesh_wufw5")
+particle_flag_rotate_y = true
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, -1.5, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+angular_velocity_min = -483.4
+angular_velocity_max = 679.13
+color_ramp = SubResource("Gradient_rva32")
+
+[node name="sparkVFX" type="CPUParticles3D" parent="Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.46483, 0)
+emitting = false
+amount = 16
+explosiveness = 1.0
+local_coords = true
+mesh = SubResource("PlaneMesh_vlvgo")
+particle_flag_align_y = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+damping_max = 5.0
+scale_amount_curve = SubResource("Curve_ndd5h")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="SegmentBase" parent="Node3D" instance=ExtResource("1_02j02")]
+
+[node name="CaveSegmentBase" parent="Node3D" instance=ExtResource("2_k1yge")]
+
+[node name="Pickup" parent="Node3D" instance=ExtResource("3_2b2sx")]
+
+[node name="PolloVoladorV2" parent="Node3D" instance=ExtResource("4_kyffj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42776, 0)
+
+[node name="Skeleton3D" parent="Node3D/PolloVoladorV2/Armature_L" index="0"]
+bones/3/rotation = Quaternion(-0.000678008, -4.43275e-08, -0.00966573, 0.999953)
+bones/4/rotation = Quaternion(-0.360288, 0.294859, -0.678792, 0.567885)
+bones/5/rotation = Quaternion(0.00858043, -0.0112588, 0.112235, 0.993581)
+bones/6/rotation = Quaternion(-0.139281, 0.00685075, 0.0782321, 0.987134)
+bones/7/rotation = Quaternion(-0.373753, -0.309839, 0.6626, 0.570324)
+bones/8/rotation = Quaternion(0.00172565, 0.0168723, -0.0957529, 0.995261)
+bones/9/rotation = Quaternion(-0.17665, 0.107867, -0.0409515, 0.977488)
+bones/10/rotation = Quaternion(0.829697, 0.0378599, -0.081859, 0.550879)
+bones/11/rotation = Quaternion(0.680754, 0.140009, -0.0313022, 0.718326)
+bones/16/rotation = Quaternion(0.829109, -0.0439549, 0.0840613, 0.550981)
+bones/17/rotation = Quaternion(0.690286, -0.149195, 0.0189993, 0.707732)
+bones/23/rotation = Quaternion(1.52021e-07, -0.624825, 0.780765, -1.21658e-07)
+
+[node name="AnimationPlayer" parent="Node3D/PolloVoladorV2" index="1"]
+autoplay = "Armature_LAction_002"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="wallObstacleBase" parent="." instance=ExtResource("6_k1yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -9)
+
+[node name="CaveTrigger" parent="." instance=ExtResource("7_kyffj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32.718)
+
+[node name="CaveSegmentBase" parent="." instance=ExtResource("8_xfe01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.694466)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="Node3D/PolloVoladorV2"]

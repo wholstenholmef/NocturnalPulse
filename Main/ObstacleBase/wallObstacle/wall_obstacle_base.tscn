@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbeflljq5cmd0"]
+
+[ext_resource type="PackedScene" uid="uid://csxw8bf4umkaq" path="res://Main/ObstacleBase/obstacleBase.tscn" id="1_ab0ut"]
+[ext_resource type="Script" uid="uid://bdxako7eqy7v6" path="res://Main/ObstacleBase/wallObstacle/wall_obstacle_base.gd" id="2_671nt"]
+[ext_resource type="ArrayMesh" uid="uid://qub5lcf26ctj" path="res://Meshes/wall_obstacles/wall_obstacle1.tres" id="3_dbjvy"]
+[ext_resource type="Shape3D" uid="uid://ccdhgem45b7ov" path="res://Meshes/wall_obstacles/CollisionShapes/wall_obstacle_shape1.tres" id="4_m3gij"]
+
+[node name="wallObstacleBase" instance=ExtResource("1_ab0ut")]
+script = ExtResource("2_671nt")
+wall_obstacle_id = "1"
+enviroment = "Cave_wall"
+
+[node name="Icon" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06602, 0)
+
+[node name="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+mesh = ExtResource("3_dbjvy")
+
+[node name="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+shape = ExtResource("4_m3gij")

@@ -1,0 +1,100 @@
+[gd_scene load_steps=10 format=3 uid="uid://kryjqpmwfinw"]
+
+[ext_resource type="PackedScene" uid="uid://dvl4yg81q72j3" path="res://Main/SegmentBase/segmentBase.tscn" id="1_p4d2l"]
+[ext_resource type="Script" uid="uid://buym14o76k2l3" path="res://Main/SegmentBase/CaveTriggers/cave_trigger.gd" id="2_qjmmd"]
+[ext_resource type="RibbonTrailMesh" uid="uid://8nn84bw1bdga" path="res://Meshes/tree.tres" id="3_2ojfb"]
+[ext_resource type="PackedScene" uid="uid://bxjpr5ae4mgxf" path="res://Main/SegmentBase/CaveTriggers/player_mode_trigger_area.tscn" id="4_iioj0"]
+[ext_resource type="Texture2D" uid="uid://rmrpqy3rnnnl" path="res://Assets/Cave/cave_entrance.png" id="5_1a3i2"]
+[ext_resource type="PackedScene" uid="uid://b27o2c3kkjd60" path="res://Main/LightModifierArea/LightModifierArea.tscn" id="6_4utqu"]
+[ext_resource type="Texture2D" uid="uid://dgv64vck1u3h1" path="res://Assets/Stones/stone1.png" id="7_2ojfb"]
+[ext_resource type="Texture2D" uid="uid://caru0iwx0oyhv" path="res://Assets/Stones/stone4.png" id="8_e7sex"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4utqu"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("5_1a3i2")
+distance_fade_mode = 2
+
+[node name="CaveTrigger" instance=ExtResource("1_p4d2l")]
+script = ExtResource("2_qjmmd")
+trigger = "Open"
+
+[node name="playerArea" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.355117)
+
+[node name="MultiMeshInstance3D" parent="Trees" index="0"]
+visible = false
+
+[node name="MultiMeshInstance3D2" parent="Trees" index="1"]
+visible = false
+
+[node name="MeshInstance3D2" parent="Trees" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.29555, 0, -0.853501)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Trees" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.42472, 0, -0.853501)
+mesh = ExtResource("3_2ojfb")
+
+[node name="playerModeTriggerArea" parent="." index="9" instance=ExtResource("4_iioj0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
+TRIGGER_MODE = "CAVE"
+
+[node name="Sprite3D4" type="Sprite3D" parent="." index="11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.313668, -5.00887, -15.7085)
+material_override = SubResource("StandardMaterial3D_4utqu")
+cast_shadow = 0
+offset = Vector2(0, 135)
+pixel_size = 0.07
+shaded = true
+texture_filter = 0
+texture = ExtResource("5_1a3i2")
+
+[node name="LightModifierArea" parent="." index="12" instance=ExtResource("6_4utqu")]
+light_modifier = 1.0
+transition_duration = 0.7
+
+[node name="LightModifierArea2" parent="." index="13" instance=ExtResource("6_4utqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.5177)
+light_modifier = 0.15
+transition_duration = 0.5
+
+[node name="Sprite3D2" type="Sprite3D" parent="." index="15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.11108, 1.98317, -13.7874)
+pixel_size = 0.07
+billboard = 2
+shaded = true
+texture_filter = 0
+render_priority = 1
+texture = ExtResource("7_2ojfb")
+
+[node name="Sprite3D3" type="Sprite3D" parent="." index="16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.88892, 1.98317, -13.7874)
+flip_h = true
+pixel_size = 0.07
+billboard = 2
+shaded = true
+texture_filter = 0
+render_priority = 1
+texture = ExtResource("7_2ojfb")
+
+[node name="Sprite3D5" type="Sprite3D" parent="." index="17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.20282, 0.678396, -15.4506)
+flip_h = true
+pixel_size = 0.03
+billboard = 2
+shaded = true
+texture_filter = 0
+render_priority = 1
+texture = ExtResource("8_e7sex")
+
+[node name="Sprite3D6" type="Sprite3D" parent="." index="18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8216, 0.678396, -15.4506)
+pixel_size = 0.03
+billboard = 2
+shaded = true
+texture_filter = 0
+render_priority = 1
+texture = ExtResource("8_e7sex")
+
+[connection signal="area_entered" from="playerModeTriggerArea" to="." method="_on_player_mode_trigger_area_entered"]
+[connection signal="body_entered" from="playerModeTriggerArea" to="." method="_on_player_mode_trigger_area_body_entered"]

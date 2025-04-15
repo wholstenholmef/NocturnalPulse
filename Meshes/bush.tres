@@ -1,0 +1,14 @@
+[gd_resource type="PlaneMesh" load_steps=3 format=3 uid="uid://glwd5uga10ar"]
+
+[ext_resource type="Texture2D" uid="uid://oan6ci41rarb" path="res://Assets/Bushes/bushes.png" id="1_pbjxj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmdgg"]
+transparency = 1
+albedo_texture = ExtResource("1_pbjxj")
+texture_filter = 0
+billboard_mode = 2
+
+[resource]
+material = SubResource("StandardMaterial3D_vmdgg")
+size = Vector2(3, 4)
+orientation = 2

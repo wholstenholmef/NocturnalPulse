@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://ws1umvctyy1q"]
+
+[ext_resource type="PackedScene" uid="uid://dvl4yg81q72j3" path="res://Main/SegmentBase/segmentBase.tscn" id="1_fdew6"]
+[ext_resource type="PackedScene" uid="uid://csxw8bf4umkaq" path="res://Main/ObstacleBase/obstacleBase.tscn" id="2_3l82a"]
+[ext_resource type="PackedScene" uid="uid://bbd5ui81cwo7q" path="res://Main/PickUp/Pickup.tscn" id="2_jv7m2"]
+
+[node name="SegmentBase" instance=ExtResource("1_fdew6")]
+
+[node name="ObstacleBase" parent="Obstacles" index="0" instance=ExtResource("2_3l82a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+
+[node name="ObstacleBase2" parent="Obstacles" index="1" instance=ExtResource("2_3l82a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -11)
+
+[node name="Pickup" parent="Pickups" index="0" instance=ExtResource("2_jv7m2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -2)
+
+[node name="Pickup2" parent="Pickups" index="1" instance=ExtResource("2_jv7m2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -3)
+
+[node name="Pickup3" parent="Pickups" index="2" instance=ExtResource("2_jv7m2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
+
+[node name="Pickup4" parent="Pickups" index="3" instance=ExtResource("2_jv7m2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, -4)
+
+[node name="Pickup5" parent="Pickups" index="4" instance=ExtResource("2_jv7m2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, -4)
+
+[node name="Pickup6" parent="Pickups" index="5" instance=ExtResource("2_jv7m2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, -5)
+
+[node name="Pickup7" parent="Pickups" index="6" instance=ExtResource("2_jv7m2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, -5)

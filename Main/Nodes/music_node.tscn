@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=3 uid="uid://wgbyv7dp357h"]
+
+[ext_resource type="Script" uid="uid://qmn606u37g24" path="res://Main/Nodes/music_node.gd" id="1_6lfl5"]
+[ext_resource type="Script" uid="uid://b0gfntfugikkc" path="res://addons/rhythm_notifier/rhythm_notifier.gd" id="2_q5cyo"]
+[ext_resource type="AudioStream" uid="uid://cr4w0f5pnqxf2" path="res://OST/Nocturnal_Pulse.mp3" id="3_utdh8"]
+[ext_resource type="Texture2D" uid="uid://ba8ic7p0tb50q" path="res://Assets/MusicShowcaser/sidebar.png" id="4_utdh8"]
+[ext_resource type="FontFile" uid="uid://cwwm3kccpvee0" path="res://Theme/Born2bSportyV2.ttf" id="5_0qaft"]
+[ext_resource type="FontFile" uid="uid://d4cwcysud460f" path="res://Theme/TinyUnicode.ttf" id="6_02h4t"]
+
+[node name="musicNode" type="Node"]
+script = ExtResource("1_6lfl5")
+
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("audio_stream_player")]
+script = ExtResource("2_q5cyo")
+bpm = 128.0
+beat_length = 0.46875
+audio_stream_player = NodePath("../MainLayerStreamPlayer")
+
+[node name="MainLayerStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_utdh8")
+
+[node name="TrackLeft1" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+
+[node name="TrackLeft2" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+
+[node name="TrackRight1" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+
+[node name="TrackRight2" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="songShowcaseControl" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_top = 360.0
+offset_right = 40.0
+offset_bottom = 400.0
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/songShowcaseControl"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -52.0
+offset_right = 128.0
+offset_bottom = -20.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 0
+texture = ExtResource("4_utdh8")
+
+[node name="songTitle" type="RichTextLabel" parent="CanvasLayer/songShowcaseControl/TextureRect"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 12.0
+offset_top = 2.0
+offset_right = 152.0
+offset_bottom = 21.0
+pivot_offset = Vector2(70, 9)
+theme_override_colors/font_shadow_color = Color(0.123473, 0.123473, 0.123473, 1)
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_offset_x = 4
+theme_override_fonts/normal_font = ExtResource("5_0qaft")
+text = "Nocturnal pulse"
+
+[node name="songAuthor" type="RichTextLabel" parent="CanvasLayer/songShowcaseControl/TextureRect"]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 0
+offset_left = 7.5
+offset_top = 15.5
+offset_right = 102.5
+offset_bottom = 34.5
+pivot_offset = Vector2(0, 10)
+theme_override_colors/font_shadow_color = Color(0.133196, 0.133196, 0.133196, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = -2
+theme_override_fonts/normal_font = ExtResource("6_02h4t")
+text = "by nintenaya"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="beat" from="Node" to="." method="_on_node_beat"]

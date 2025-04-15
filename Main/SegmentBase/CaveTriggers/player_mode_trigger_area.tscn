@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxjpr5ae4mgxf"]
+
+[ext_resource type="Script" uid="uid://vlkpfv2voh8r" path="res://Main/SegmentBase/CaveTriggers/player_mode_trigger_area.gd" id="1_fpf52"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_umcfy"]
+size = Vector3(16, 16, 0)
+
+[node name="playerModeTriggerArea" type="Area3D"]
+script = ExtResource("1_fpf52")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_umcfy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

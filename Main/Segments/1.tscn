@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmc8c3yl18iik"]
+
+[ext_resource type="PackedScene" uid="uid://dvl4yg81q72j3" path="res://Main/SegmentBase/segmentBase.tscn" id="1_kjga8"]
+[ext_resource type="PackedScene" uid="uid://csxw8bf4umkaq" path="res://Main/ObstacleBase/obstacleBase.tscn" id="2_kjga8"]
+
+[node name="SegmentBase" instance=ExtResource("1_kjga8")]
+
+[node name="ObstacleBase" parent="Obstacles" index="0" instance=ExtResource("2_kjga8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
+
+[node name="ObstacleBase2" parent="Obstacles" index="1" instance=ExtResource("2_kjga8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -7)

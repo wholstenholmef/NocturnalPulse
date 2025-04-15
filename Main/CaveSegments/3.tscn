@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk4hd58m1wnjd"]
+
+[ext_resource type="PackedScene" uid="uid://lj3xkjglxx37" path="res://Main/SegmentBase/caveSegmentBase.tscn" id="1_x22sp"]
+[ext_resource type="PackedScene" uid="uid://bbeflljq5cmd0" path="res://Main/ObstacleBase/wallObstacle/wall_obstacle_base.tscn" id="2_uuib3"]
+
+[node name="CaveSegmentBase" instance=ExtResource("1_x22sp")]
+
+[node name="wallObstacleBase" parent="WallObstacles" index="0" instance=ExtResource("2_uuib3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14)
+wall_obstacle_id = "2"
+
+[node name="wallObstacleBase2" parent="WallObstacles" index="1" instance=ExtResource("2_uuib3")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, -28)
+wall_obstacle_id = "2"
+
+[editable path="Cueva"]

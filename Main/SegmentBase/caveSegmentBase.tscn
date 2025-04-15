@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://lj3xkjglxx37"]
+
+[ext_resource type="Script" uid="uid://yaxrgql4sqpm" path="res://Main/SegmentBase/segment_base.gd" id="1_qc3ao"]
+[ext_resource type="PackedScene" uid="uid://dgsx4rig13y5j" path="res://Assets/Cave/Cueva.glb" id="2_1eiiv"]
+[ext_resource type="Texture2D" uid="uid://cjj6h5gtimhtl" path="res://Assets/Textures/stone_floor.png" id="3_0n74e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_08cnf"]
+cull_mode = 2
+albedo_texture = ExtResource("3_0n74e")
+uv1_scale = Vector3(0.7, 0.7, 0.7)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1eiiv"]
+size = Vector3(10, 10, 0)
+
+[node name="CaveSegmentBase" type="Node3D"]
+script = ExtResource("1_qc3ao")
+
+[node name="Cueva" parent="." instance=ExtResource("2_1eiiv")]
+
+[node name="Circle" parent="Cueva" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 3.83, 0, 0, 0)
+cast_shadow = 2
+surface_material_override/0 = SubResource("StandardMaterial3D_08cnf")
+
+[node name="endOfSegmentMarker" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)
+
+[node name="playerArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -0.385923)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="playerArea"]
+shape = SubResource("BoxShape3D_1eiiv")
+
+[node name="WallObstacles" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[connection signal="body_entered" from="playerArea" to="." method="_on_player_area_body_entered"]
+
+[editable path="Cueva"]

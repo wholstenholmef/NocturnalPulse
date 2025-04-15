@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=3 uid="uid://t7spa8vn2rad"]
+
+[ext_resource type="PackedScene" uid="uid://lj3xkjglxx37" path="res://Main/SegmentBase/caveSegmentBase.tscn" id="1_nantb"]
+[ext_resource type="PackedScene" uid="uid://bbeflljq5cmd0" path="res://Main/ObstacleBase/wallObstacle/wall_obstacle_base.tscn" id="2_xe3b5"]
+[ext_resource type="PackedScene" uid="uid://bbd5ui81cwo7q" path="res://Main/PickUp/Pickup.tscn" id="3_fcgp5"]
+
+[node name="CaveSegmentBase" instance=ExtResource("1_nantb")]
+
+[node name="Node3D" type="Node3D" parent="." index="3"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 3, -4)
+
+[node name="Pickup" parent="Node3D" index="0" instance=ExtResource("3_fcgp5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+
+[node name="Node3D6" type="Node3D" parent="." index="4"]
+transform = Transform3D(0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 0, 0, 1, 0, 3, -5)
+
+[node name="Pickup" parent="Node3D6" index="0" instance=ExtResource("3_fcgp5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+
+[node name="Node3D3" type="Node3D" parent="." index="5"]
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0, 3, -6)
+
+[node name="Pickup" parent="Node3D3" index="0" instance=ExtResource("3_fcgp5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+
+[node name="Node3D4" type="Node3D" parent="." index="6"]
+transform = Transform3D(1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0, 1, 0, 3, -8)
+
+[node name="Pickup" parent="Node3D4" index="0" instance=ExtResource("3_fcgp5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+
+[node name="Node3D5" type="Node3D" parent="." index="7"]
+transform = Transform3D(0.939692, 0.34202, 0, -0.34202, 0.939692, 0, 0, 0, 1, 0, 3, -7)
+
+[node name="Pickup" parent="Node3D5" index="0" instance=ExtResource("3_fcgp5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+
+[node name="Node3D2" type="Node3D" parent="." index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="Node3D7" type="Node3D" parent="." index="9"]
+transform = Transform3D(-0.258819, -0.965926, 0, 0.965926, -0.258819, 0, 0, 0, 1, 0, 3, -4)
+
+[node name="Pickup" parent="Node3D7" index="0" instance=ExtResource("3_fcgp5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+
+[node name="Node3D8" type="Node3D" parent="." index="10"]
+transform = Transform3D(-0.573577, -0.819152, 0, 0.819152, -0.573577, 0, 0, 0, 1, 0, 3, -5)
+
+[node name="Pickup" parent="Node3D8" index="0" instance=ExtResource("3_fcgp5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+
+[node name="Node3D9" type="Node3D" parent="." index="11"]
+transform = Transform3D(-0.866025, -0.5, 0, 0.5, -0.866025, 0, 0, 0, 1, 0, 3, -6)
+
+[node name="Pickup" parent="Node3D9" index="0" instance=ExtResource("3_fcgp5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+
+[node name="Node3D10" type="Node3D" parent="." index="12"]
+transform = Transform3D(-0.965926, 0.258819, 0, -0.258819, -0.965926, 0, 0, 0, 1, 0, 3, -8)
+
+[node name="Pickup" parent="Node3D10" index="0" instance=ExtResource("3_fcgp5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+
+[node name="Node3D11" type="Node3D" parent="." index="13"]
+transform = Transform3D(-0.996195, -0.0871557, 0, 0.0871557, -0.996195, 0, 0, 0, 1, 0, 3, -7)
+
+[node name="Pickup" parent="Node3D11" index="0" instance=ExtResource("3_fcgp5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+
+[node name="Node3D12" type="Node3D" parent="." index="14"]
+transform = Transform3D(-0.965926, 0.258819, 0, -0.258819, -0.965926, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="wallObstacleBase" parent="WallObstacles" index="0" instance=ExtResource("2_xe3b5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+
+[editable path="Cueva"]

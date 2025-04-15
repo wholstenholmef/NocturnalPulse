@@ -1,0 +1,15 @@
+[gd_resource type="PlaneMesh" load_steps=3 format=3 uid="uid://twifdmn5guqt"]
+
+[ext_resource type="Texture2D" uid="uid://caru0iwx0oyhv" path="res://Assets/Stones/stone4.png" id="1_1cacs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0hmb"]
+transparency = 1
+albedo_texture = ExtResource("1_1cacs")
+texture_filter = 0
+disable_receive_shadows = true
+billboard_mode = 2
+
+[resource]
+material = SubResource("StandardMaterial3D_v0hmb")
+center_offset = Vector3(0, 0.5, 0)
+orientation = 2

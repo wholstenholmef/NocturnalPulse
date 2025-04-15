@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy20fr2b0ntw8"]
+
+[ext_resource type="Script" uid="uid://le7gwn2gy1fk" path="res://addons/on_beat_player/on_beat_player.gd" id="1_k11sx"]
+[ext_resource type="Script" uid="uid://c4pdshtlofpyb" path="res://addons/on_beat_player/on_beat_song.gd" id="2_2qg4r"]
+[ext_resource type="AudioStream" uid="uid://cr4w0f5pnqxf2" path="res://OST/Nocturnal_Pulse.mp3" id="3_ow8iw"]
+
+[sub_resource type="Resource" id="Resource_cn7ig"]
+script = ExtResource("2_2qg4r")
+name = &""
+author = ""
+bpm = 120
+first_beat_offset_time = 0.0
+stream = ExtResource("3_ow8iw")
+metadata/_custom_type_script = "uid://c4pdshtlofpyb"
+
+[node name="Node" type="Node"]
+script = ExtResource("1_k11sx")
+son = SubResource("Resource_cn7ig")
+
+[connection signal="beat" from="." to="." method="_on_beat"]

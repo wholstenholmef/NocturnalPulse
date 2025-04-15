@@ -1,0 +1,14 @@
+[gd_resource type="PlaneMesh" load_steps=3 format=3 uid="uid://7xw3xkoq0h7h"]
+
+[ext_resource type="Texture2D" uid="uid://b2w34t06j18ng" path="res://Assets/Trees/tree_strump_single.png" id="1_7077v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmdgg"]
+transparency = 1
+albedo_texture = ExtResource("1_7077v")
+texture_filter = 0
+billboard_mode = 2
+
+[resource]
+material = SubResource("StandardMaterial3D_vmdgg")
+size = Vector2(3, 4)
+orientation = 2

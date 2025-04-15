@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://csxw8bf4umkaq"]
+
+[ext_resource type="Script" uid="uid://vw0s6dyge6dy" path="res://Main/ObstacleBase/obstacle_base.gd" id="1_837fa"]
+[ext_resource type="Texture2D" uid="uid://3milanmxcxd7" path="res://Assets/Obstacles/obstacle_icon.png" id="2_kxqcl"]
+[ext_resource type="AudioStream" uid="uid://ipmi1jnglgtt" path="res://Assets/SFX/alerta.mp3" id="4_v0hmb"]
+[ext_resource type="Texture2D" uid="uid://caru0iwx0oyhv" path="res://Assets/Stones/stone4.png" id="5_hxd1h"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fh6cy"]
+radius = 0.8
+
+[sub_resource type="Animation" id="Animation_q6pab"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:mesh:material:albedo_texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_hxd1h")]
+}
+
+[sub_resource type="Animation" id="Animation_v7n2e"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:mesh:material:albedo_texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_hxd1h")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tb81j"]
+_data = {
+&"RESET": SubResource("Animation_q6pab"),
+&"new_animation": SubResource("Animation_v7n2e")
+}
+
+[node name="ObstacleBase" type="StaticBody3D"]
+script = ExtResource("1_837fa")
+
+[node name="Icon" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06602, 0)
+pixel_size = 0.04
+billboard = 2
+texture_filter = 0
+texture = ExtResource("2_kxqcl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_fh6cy")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="AlertaSFX" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.507595, 0)
+stream = ExtResource("4_v0hmb")
+max_distance = 15.0
+max_polyphony = 5
+panning_strength = 3.0
+emission_angle_enabled = true
+emission_angle_degrees = 0.0
+doppler_tracking = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tb81j")
+}

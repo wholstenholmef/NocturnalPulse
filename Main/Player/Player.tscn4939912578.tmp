@@ -1,0 +1,146 @@
+[gd_scene load_steps=8 format=3 uid="uid://e4p47vulalgt"]
+
+[ext_resource type="Script" uid="uid://dbqqh0fcmsd5t" path="res://Main/Player/player.gd" id="1_wyc5r"]
+[ext_resource type="PackedScene" uid="uid://qr5mv8arxrcg" path="res://Assets/Bird/Pajaro.glb" id="2_wyc5r"]
+[ext_resource type="Script" uid="uid://c6fna6wu7uhoo" path="res://Main/HUD/hud_layer.gd" id="3_vpmj6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vpmj6"]
+shading_mode = 0
+
+[sub_resource type="SphereMesh" id="SphereMesh_6nlce"]
+radial_segments = 6
+rings = 8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2eq7i"]
+radius = 0.630214
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wyc5r"]
+radius = 1.0
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_wyc5r")
+
+[node name="PajaroMesh" parent="." instance=ExtResource("2_wyc5r")]
+transform = Transform3D(-0.3, 0, -2.62268e-08, 0, 0.3, 0, 2.62268e-08, 0, -0.3, 0, 0.429496, 0)
+
+[node name="Pajaro" parent="PajaroMesh" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_vpmj6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+visible = false
+mesh = SubResource("SphereMesh_6nlce")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.584439, 0)
+shape = SubResource("SphereShape3D_2eq7i")
+
+[node name="pickupArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pickupArea"]
+shape = SubResource("SphereShape3D_wyc5r")
+
+[node name="HUDLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_vpmj6")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUDLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="distanceLabel" type="RichTextLabel" parent="HUDLayer/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+bbcode_enabled = true
+text = "distanceLabel"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HUDLayer/MarginContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+bbcode_enabled = true
+text = "0"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="DEBUGLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+
+[node name="MarginContainer" type="MarginContainer" parent="DEBUGLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DEBUGLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="gyroContainer" type="VBoxContainer" parent="DEBUGLayer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+
+[node name="gyroLabelX" type="Label" parent="DEBUGLayer/MarginContainer/HBoxContainer/gyroContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="gyroLabelY" type="Label" parent="DEBUGLayer/MarginContainer/HBoxContainer/gyroContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="gyroLabelZ" type="Label" parent="DEBUGLayer/MarginContainer/HBoxContainer/gyroContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="accelContainer" type="VBoxContainer" parent="DEBUGLayer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+
+[node name="accelLabelX" type="Label" parent="DEBUGLayer/MarginContainer/HBoxContainer/accelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="accelLabelY" type="Label" parent="DEBUGLayer/MarginContainer/HBoxContainer/accelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="accelLabelZ" type="Label" parent="DEBUGLayer/MarginContainer/HBoxContainer/accelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.579432, -0.0292263)
+light_energy = 16.0
+spot_range = 10.3992
+spot_angle = 14.3245
+
+[connection signal="area_entered" from="pickupArea" to="." method="_on_pickup_area_area_entered"]
+
+[editable path="PajaroMesh"]

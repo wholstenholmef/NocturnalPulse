@@ -1,0 +1,168 @@
+[gd_scene load_steps=22 format=3 uid="uid://dvl4yg81q72j3"]
+
+[ext_resource type="Script" uid="uid://yaxrgql4sqpm" path="res://Main/SegmentBase/segment_base.gd" id="1_cw0ub"]
+[ext_resource type="Texture2D" uid="uid://euynrmnvhefq" path="res://icon.svg" id="1_pdb28"]
+[ext_resource type="RibbonTrailMesh" uid="uid://8nn84bw1bdga" path="res://Meshes/tree.tres" id="4_qtdyf"]
+[ext_resource type="PlaneMesh" uid="uid://glwd5uga10ar" path="res://Meshes/bush.tres" id="4_vmdgg"]
+[ext_resource type="Texture2D" uid="uid://b8js8feog06x7" path="res://Assets/Textures/path1.png" id="6_fkqlf"]
+[ext_resource type="Texture2D" uid="uid://bbbdhq6622h2h" path="res://Assets/Textures/grass_floor.png" id="6_qtdyf"]
+[ext_resource type="Texture2D" uid="uid://bg62g17qg2nlq" path="res://Assets/Textures/path3.png" id="7_33u4e"]
+[ext_resource type="Texture2D" uid="uid://cvccmissv4j2x" path="res://Assets/Textures/path2.png" id="7_k2m5l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_umcfy"]
+size = Vector3(10, 10, 0)
+
+[sub_resource type="MultiMesh" id="MultiMesh_fkqlf"]
+transform_format = 1
+instance_count = 16
+mesh = ExtResource("4_qtdyf")
+buffer = PackedFloat32Array(-1.001, 0, 0, 0.062192, 0, 1.001, 0, 0, 0, 0, -1.001, -11.5387, 0, 0, -1.001, 1.51583, 0, 1.001, 0, 0, 1.001, 0, 0, -0.737541, -1.001, 0, 0, 0.893209, 0, 1.001, 0, 0, 0, 0, -1.001, -7.68221, -1.001, 0, 0, 1.85393, 0, 1.001, 0, 0, 0, 0, -1.001, -11.4187, 0, 0, -1.001, 0.93459, 0, 1.001, 0, 0, 1.001, 0, 0, -5.6975, 0, 0, -1.001, 1.61509, 0, 1.001, 0, 0, 1.001, 0, 0, -7.80464, -1.001, 0, 0, 0.903874, 0, 1.001, 0, 0, 0, 0, -1.001, -12.222, -1.001, 0, 0, 0.0643001, 0, 1.001, 0, 0, 0, 0, -1.001, -8.49471, -1.001, 0, 0, -1.20956, 0, 1.001, 0, 0, 0, 0, -1.001, -11.9302, -1.001, 0, 0, 0.940401, 0, 1.001, 0, 0, 0, 0, -1.001, -12.1781, 0, 0, -1.001, 1.7183, 0, 1.001, 0, 0, 1.001, 0, 0, -1.55556, -1.001, 0, 0, 0.250208, 0, 1.001, 0, 0, 0, 0, -1.001, -6.49992, -1.001, 0, 0, -0.647317, 0, 1.001, 0, 0, 0, 0, -1.001, -6.10254, 0, 0, -1.001, 1.4151, 0, 1.001, 0, 0, 1.001, 0, 0, -0.962497, -1.001, 0, 0, -0.628226, 0, 1.001, 0, 0, 0, 0, -1.001, -2.72771, 0, 0, -1.001, 0.0891885, 0, 1.001, 0, 0, 1.001, 0, 0, -0.782269)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_k2m5l"]
+size = Vector2(3.5, 12)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fkqlf"]
+size = Vector2(2, 16)
+
+[sub_resource type="MultiMesh" id="MultiMesh_33u4e"]
+transform_format = 1
+instance_count = 12
+mesh = ExtResource("4_vmdgg")
+buffer = PackedFloat32Array(0.588626, -1.13324, 0.251294, -3.50129, -0.726341, -0.139814, 1.07086, 0, -0.905432, -0.624565, -0.69568, -9.63472, -0.292489, -0.670365, 0.858733, -3.7339, 1.04868, 0.0675905, 0.409951, 0, -0.29509, 0.904657, 0.605705, -7.59082, -0.0796591, 1.18278, -0.360531, -4.99869, -1.21712, -0.138718, -0.186164, 0, -0.218069, 0.342177, 1.17075, -13.0995, -0.584564, 0.46999, -0.0984711, -3.58646, -0.112628, 0.0166116, 0.747891, 0, 0.4668, 0.592567, 0.0571357, -11.5109, -0.204472, -0.685769, -0.352134, -5.10081, 0.767631, -0.214609, -0.0277924, 0, -0.070857, -0.346049, 0.715063, -10.2637, 1.06463, -0.0234011, -0.570185, -4.01011, 0.245883, 1.10794, 0.413633, 0, 0.514975, -0.480628, 0.981269, -1.70793, -0.0996466, 0.522476, -0.988428, -4.34991, -1.10997, -0.165102, 0.0246279, 0, -0.133925, 0.979623, 0.531323, -4.88223, 0.20647, 1.0473, -0.0957795, -4.24186, 1.04214, -0.190635, 0.162015, 0, 0.141283, -0.124345, -1.05509, -12.143, -0.695294, -0.0989416, -0.400487, -3.95752, 0.292852, -0.671169, -0.342612, 0, -0.290546, -0.439723, 0.613058, -7.81591, -0.643072, 1.33282, -0.462648, -4.83725, -0.828667, -0.768323, -1.0616, 0, -1.14183, -0.193039, 1.031, -7.62721, -1.40242, 0.688051, -0.359603, -4.96937, 0.737469, 1.41269, -0.173074, 0, 0.242627, -0.31686, -1.5525, -5.65754, -0.449548, 0.634822, -0.595547, -5.08116, 0.840409, 0.141983, -0.483035, 0, -0.22669, -0.732537, -0.609729, -2.7737)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qtdyf"]
+albedo_texture = ExtResource("6_qtdyf")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_33u4e"]
+material = SubResource("StandardMaterial3D_qtdyf")
+size = Vector2(30, 16)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2m5l"]
+albedo_texture = ExtResource("6_fkqlf")
+uv1_scale = Vector3(1, 0.295, 0.475)
+uv1_offset = Vector3(0, 0, -0.535)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_t0mq8"]
+material = SubResource("StandardMaterial3D_k2m5l")
+size = Vector2(16, 2)
+center_offset = Vector3(-8, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fkqlf"]
+albedo_texture = ExtResource("7_k2m5l")
+uv1_scale = Vector3(1, 0.295, 0.475)
+uv1_offset = Vector3(0, 0, -0.535)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a4gd6"]
+material = SubResource("StandardMaterial3D_fkqlf")
+size = Vector2(16, 2)
+center_offset = Vector3(-8, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pgqor"]
+albedo_texture = ExtResource("7_33u4e")
+uv1_scale = Vector3(1, 0.295, 0.475)
+uv1_offset = Vector3(0, 0, -0.535)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_53cce"]
+material = SubResource("StandardMaterial3D_pgqor")
+size = Vector2(16, 2)
+center_offset = Vector3(-8, 0, 0)
+
+[node name="SegmentBase" type="Node3D"]
+script = ExtResource("1_cw0ub")
+difficulty = "HARD"
+
+[node name="Obstacles" type="Node3D" parent="."]
+
+[node name="playerArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3997)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="playerArea"]
+shape = SubResource("BoxShape3D_umcfy")
+
+[node name="endOfSegmentMarker" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
+
+[node name="Pickups" type="Node3D" parent="."]
+
+[node name="Trees" type="Node3D" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.06353, 0, 0)
+multimesh = SubResource("MultiMesh_fkqlf")
+
+[node name="MultiMeshInstance3D2" type="MultiMeshInstance3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.84523, 0, 0)
+multimesh = SubResource("MultiMesh_fkqlf")
+
+[node name="planeMesh" type="MeshInstance3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.55828, 0, -6.30733)
+visible = false
+mesh = SubResource("PlaneMesh_k2m5l")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.32115, 0, -0.853501)
+mesh = ExtResource("4_qtdyf")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(9.925, 0, 0, 0, 9.925, 0, 0, 0, 9.925, 0, -0.0396237, -6.35333)
+visible = false
+axis = 1
+transparent = false
+shaded = true
+double_sided = false
+texture = ExtResource("1_pdb28")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="bushMeshInstance" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(-0.260808, 0.965391, 0, -0.965391, -0.260808, 0, 0, 0, 1, -2.60939, 0, 0)
+visible = false
+mesh = ExtResource("4_vmdgg")
+
+[node name="planeMeshReference" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47219, 0, -8.06397)
+visible = false
+mesh = SubResource("PlaneMesh_fkqlf")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.42167, 0, -8.06397)
+visible = false
+mesh = SubResource("PlaneMesh_fkqlf")
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.691211, 0)
+multimesh = SubResource("MultiMesh_33u4e")
+
+[node name="MultiMeshInstance3D2" type="MultiMeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.10382, 0.691211, 0)
+multimesh = SubResource("MultiMesh_33u4e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0347809, -8.00457)
+mesh = SubResource("PlaneMesh_33u4e")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.05109, 0, 0)
+mesh = SubResource("PlaneMesh_t0mq8")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0510895, 0, 0)
+mesh = SubResource("PlaneMesh_a4gd6")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.94891, 0, 0)
+mesh = SubResource("PlaneMesh_53cce")
+
+[connection signal="body_entered" from="playerArea" to="." method="_on_player_area_body_entered"]

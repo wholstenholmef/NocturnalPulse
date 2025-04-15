@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbd5ui81cwo7q"]
+
+[ext_resource type="Script" uid="uid://cn4ftnefucuse" path="res://Main/PickUp/pickup.gd" id="1_bl1wn"]
+[ext_resource type="Texture2D" uid="uid://bpjj71iruingx" path="res://Assets/pickups.png" id="1_ldvhr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7ifdy"]
+radius = 0.25
+
+[node name="Pickup" type="Area3D" groups=["PickupArea"]]
+script = ExtResource("1_bl1wn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.641204, 0)
+shape = SubResource("SphereShape3D_7ifdy")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.641204, 0)
+pixel_size = 0.05
+billboard = 2
+shaded = true
+texture_filter = 0
+texture = ExtResource("1_ldvhr")
+hframes = 2
+vframes = 5

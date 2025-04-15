@@ -1,0 +1,18 @@
+[gd_resource type="RibbonTrailMesh" load_steps=3 format=3 uid="uid://8nn84bw1bdga"]
+
+[ext_resource type="Texture2D" uid="uid://du1uff3ltab3t" path="res://Assets/Trees/Tree.png" id="1_pp3iw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66xwu"]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 2
+albedo_texture = ExtResource("1_pp3iw")
+texture_filter = 0
+proximity_fade_distance = 5.0
+distance_fade_mode = 2
+
+[resource]
+material = SubResource("StandardMaterial3D_66xwu")
+size = 9.0
+sections = 90
+section_segments = 1

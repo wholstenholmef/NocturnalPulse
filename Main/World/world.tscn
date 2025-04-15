@@ -1,0 +1,234 @@
+[gd_scene load_steps=24 format=3 uid="uid://xssvva13wld7"]
+
+[ext_resource type="Script" uid="uid://bc578n2pbxbv" path="res://Main/World/world.gd" id="1_xmrsg"]
+[ext_resource type="Script" uid="uid://b8v7262k6j503" path="res://Main/mainCamera/camera_3d.gd" id="2_ddcun"]
+[ext_resource type="Texture2D" uid="uid://jfp2a6adotgf" path="res://Assets/panorama_image.png" id="2_efq7w"]
+[ext_resource type="Script" uid="uid://b3g4n0t442nyb" path="res://Main/World/world_environment.gd" id="3_dbhhv"]
+[ext_resource type="PackedScene" uid="uid://e4p47vulalgt" path="res://Main/Player/Player.tscn" id="3_efq7w"]
+[ext_resource type="PackedScene" uid="uid://dvl4yg81q72j3" path="res://Main/SegmentBase/segmentBase.tscn" id="4_dbhhv"]
+[ext_resource type="Texture2D" uid="uid://bbbdhq6622h2h" path="res://Assets/Textures/grass_floor.png" id="7_n0xby"]
+[ext_resource type="RibbonTrailMesh" uid="uid://8nn84bw1bdga" path="res://Meshes/tree.tres" id="8_yp0sv"]
+[ext_resource type="Texture2D" uid="uid://cvu3twi0suwbo" path="res://Assets/Trees/tree_withered.png" id="9_fx87k"]
+[ext_resource type="Texture2D" uid="uid://du1uff3ltab3t" path="res://Assets/Trees/Tree.png" id="10_fx87k"]
+[ext_resource type="Shader" uid="uid://c166umn7xd6mx" path="res://Main/World/circle.gdshader" id="11_fx87k"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_efq7w"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+sky_energy_multiplier = 0.0
+sky_cover = ExtResource("2_efq7w")
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_curve = 0.16
+ground_energy_multiplier = 0.0
+
+[sub_resource type="Sky" id="Sky_dbhhv"]
+sky_material = SubResource("ProceduralSkyMaterial_efq7w")
+
+[sub_resource type="Environment" id="Environment_n0xby"]
+background_mode = 2
+sky = SubResource("Sky_dbhhv")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qtdyf"]
+albedo_texture = ExtResource("7_n0xby")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_f8spc"]
+material = SubResource("StandardMaterial3D_qtdyf")
+size = Vector2(30, 16)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66xwu"]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 2
+albedo_texture = ExtResource("10_fx87k")
+texture_filter = 0
+proximity_fade_distance = 5.0
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_w0pbx"]
+material = SubResource("StandardMaterial3D_66xwu")
+size = 9.0
+sections = 90
+section_segments = 1
+
+[sub_resource type="Animation" id="Animation_6t16o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("diamondTransitionRect:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_w0pbx"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("diamondTransitionRect:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.05]
+}
+
+[sub_resource type="Animation" id="Animation_y0vgf"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("diamondTransitionRect:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.966667),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [1.05, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_imgds"]
+_data = {
+&"RESET": SubResource("Animation_6t16o"),
+&"fade_in": SubResource("Animation_w0pbx"),
+&"fade_out": SubResource("Animation_y0vgf")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_efq7w"]
+shader = ExtResource("11_fx87k")
+shader_parameter/circle_size = 0.0
+shader_parameter/screen_width = 640.0
+shader_parameter/screen_height = 360.0
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_xmrsg")
+cave_frequency = 7
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." groups=["WorldEnviroment"]]
+environment = SubResource("Environment_n0xby")
+script = ExtResource("3_dbhhv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+visible = false
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 0, 1.74974, 1.88793)
+far = 200.0
+script = ExtResource("2_ddcun")
+target = NodePath("../Player")
+
+[node name="normalCameraMarker" type="Marker3D" parent="Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74974, 1.88793)
+top_level = true
+
+[node name="caveCameraMarker" type="Marker3D" parent="Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 4.1326)
+top_level = true
+
+[node name="deathCameraMarker" type="Marker3D" parent="Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.792768, 1.70048)
+top_level = true
+
+[node name="Player" parent="." instance=ExtResource("3_efq7w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.37043, 4.77876, 4.06333)
+cave_rotation_speed = 125
+
+[node name="caveSegmentsNode" type="Node3D" parent="."]
+
+[node name="SegmentsNode" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="SegmentBase" parent="SegmentsNode" instance=ExtResource("4_dbhhv")]
+
+[node name="PickUps" type="Node3D" parent="."]
+
+[node name="Intro" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Intro"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0347809, 7.99209)
+mesh = SubResource("PlaneMesh_f8spc")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Intro"]
+transform = Transform3D(0.954042, 0, -0.299674, 0, 1, 0, 0.299674, 0, 0.954042, -3.24277, 0, 5.15216)
+visible = false
+mesh = ExtResource("8_yp0sv")
+
+[node name="Sprite3D" type="Sprite3D" parent="Intro"]
+transform = Transform3D(0.802349, 0, -0.596855, 0, 1, 0, 0.596855, 0, 0.802349, -2.63902, 0, 3.92921)
+shaded = true
+texture = ExtResource("9_fx87k")
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Intro"]
+transform = Transform3D(1, 0, 0, 0, -0.553915, 0.832573, 0, -0.832573, -0.553915, -2.55112, 2.63755, 2.02719)
+light_color = Color(0.156863, 0.360784, 0.768627, 1)
+light_energy = 5.0
+spot_range = 10.6695
+spot_attenuation = 0.41
+spot_angle = 70.6708
+
+[node name="Node3D" type="Node3D" parent="Intro"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Intro/Node3D"]
+transform = Transform3D(0.680094, 0, 0.733125, 0, 1, 0, -0.733125, 0, 0.680094, -1.82699, 0, 6.27604)
+mesh = SubResource("RibbonTrailMesh_w0pbx")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Intro/Node3D"]
+transform = Transform3D(0.680094, 0, 0.733125, 0, 1, 0, -0.733125, 0, 0.680094, -4.12825, 0, 5.80568)
+mesh = SubResource("RibbonTrailMesh_w0pbx")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Intro/Node3D"]
+transform = Transform3D(0.680094, 0, 0.733125, 0, 1, 0, -0.733125, 0, 0.680094, -5.19286, 0, 3.39372)
+mesh = SubResource("RibbonTrailMesh_w0pbx")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Intro/Node3D"]
+transform = Transform3D(0.680094, 0, 0.733125, 0, 1, 0, -0.733125, 0, 0.680094, -4.75703, 0, 1.46747)
+mesh = SubResource("RibbonTrailMesh_w0pbx")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Intro/Node3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -2.28176, 0.318702, 8.3261)
+mesh = SubResource("RibbonTrailMesh_w0pbx")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Intro/Node3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -5.16061, 0.318702, 6.30813)
+mesh = SubResource("RibbonTrailMesh_w0pbx")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Intro/Node3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -6.23716, 0.318702, 2.94435)
+mesh = SubResource("RibbonTrailMesh_w0pbx")
+
+[node name="ScreenVFXLayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="TransitionAnimationPlayer" type="AnimationPlayer" parent="ScreenVFXLayer" groups=["transitionAnimation"]]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_imgds")
+}
+
+[node name="diamondTransitionRect" type="ColorRect" parent="ScreenVFXLayer"]
+material = SubResource("ShaderMaterial_efq7w")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="player_passed" from="SegmentsNode/SegmentBase" to="." method="_on_segment_base_player_passed"]
